@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Container, Form, Input, InputGroup, InputGroupAddon, Button, Table } from 'reactstrap';
+import { Container, Form, Input, InputGroup, Button, Table } from 'reactstrap';
 
 function App() {
   const [value, setValue] = useState('')
@@ -27,6 +27,13 @@ function App() {
     setTodos(newTodos)
     console.log(newTodos)
   }
+  // 完了・未完了ボタン押下時の処理
+  const completeTodo = index => {
+    const newTodos = setTodos(value)
+    newTodos.splice[index].complete = !newTodos[index].complete
+    setTodos(newTodos)
+    console.log(newTodos)
+  }
 
   return (
     <div className="App">
@@ -37,9 +44,9 @@ function App() {
             <Input text="text"
              value={value}
              onChange={e => setValue(e.target.value)}></Input>
-            <InputGroupAddon type="append">
+            <InputGroup.Addon type="append">
               <Button type="submit" color="primary">追加</Button>
-            </InputGroupAddon>
+            </InputGroup.Addon>
           </InputGroup>
         </Form>
       </Container>
