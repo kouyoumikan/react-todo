@@ -7,14 +7,23 @@ function App() {
   const [value, setValue] = useState('')
   const [todos, setTodos] = useState([])
 
+  // ボタン押下時の処理
   const handleSubmit = e => {
     e.preventDefault()
     addTodo(value)
+    setValue('')
     console.log(value)
   }
-
+  // リストの追加
   const addTodo = text => {
     const newTodos = [...todos, text]
+    setTodos(newTodos)
+    console.log(newTodos)
+  }
+  // リストの削除
+  const removeTodo = index => {
+    const newTodos = [...todos]
+    newTodos.splice(index, 1)
     setTodos(newTodos)
     console.log(newTodos)
   }
@@ -40,8 +49,13 @@ function App() {
           <tbody>
             {todos && todos.map((todo, index) => (
             <tr key={index}>
-              <th  className="text-left">
+              <th className="text-left">
                 {todo}
+              </th>
+
+              <th className="text-right">
+                <Button color="danger"
+                onClick={() => removeTodo(index)}>削除</Button>
               </th>
             </tr>
             ))}
