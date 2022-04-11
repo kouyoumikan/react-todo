@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Container, Form, Input, InputGroup, Button, Table } from 'reactstrap';
+import { Container, Button, Table } from 'reactstrap';
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 
 function App() {
-  const [value, setValue] = useState('')
+  // const [value, setValue] = useState('')
   const [todos, setTodos] = useState([])
 
-  // ボタン押下時の処理
-  const handleSubmit = e => {
-    e.preventDefault()
-    addTodo(value)
-    setValue('')
-    console.log(value)
-  }
+  // // ボタン押下時の処理
+  // const handleSubmit = e => {
+  //   e.preventDefault()
+  //   addTodo(value)
+  //   setValue('')
+  //   console.log(value)
+  // }
   // リストの追加
   const addTodo = text => {
     const newTodos = [...todos, {text, complete:false}]
@@ -39,7 +41,8 @@ function App() {
     <div className="App">
       <Container>
         <h1 className="mt-4">Todo リスト</h1>
-        <Form onSubmit={handleSubmit}>
+        <TodoForm addTodo={addTodo}></TodoForm>
+        {/* <Form onSubmit={handleSubmit}>
           <InputGroup>
             <Input text="text"
              value={value}
@@ -48,11 +51,18 @@ function App() {
               <Button type="submit" color="primary">追加</Button>
             </InputGroup.Addon>
           </InputGroup>
-        </Form>
+        </Form> */}
       </Container>
 
       <Container>
-        <Table>
+        <TodoList 
+          todos={todos}
+          completeTodo={completeTodo}
+          removeTodo={removeTodo}
+        >
+
+        </TodoList>
+        {/* <Table>
           <tbody>
             {todos && todos.map((todo, index) => (
             <tr key={index}>
@@ -72,7 +82,7 @@ function App() {
             </tr>
             ))}
           </tbody>
-        </Table>
+        </Table> */}
       </Container>
     </div>
   );
