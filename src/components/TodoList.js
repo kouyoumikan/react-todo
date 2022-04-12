@@ -1,9 +1,13 @@
-import React, {useState} from 'react';
+import React, { useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Button, Table } from 'reactstrap';
+import { TodosContext } from '../contexts/TodosContext';
 
-function TodoList({todos, completeTodo, removeTodo}) {
+
+// function TodoList({todos, completeTodo, removeTodo}) {
+function TodoList() {
+    const { todos, completeTodo, removeTodo } = useContext(TodosContext)
 
   return (
     <Table>
@@ -30,4 +34,4 @@ function TodoList({todos, completeTodo, removeTodo}) {
   );
 }
 
-export default TodoList
+export default TodoList;

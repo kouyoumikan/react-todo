@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { Form, Input, InputGroup, Button } from 'reactstrap';
+import { TodosContext } from '../contexts/TodosContext';
 
-function TodoForm({addTodo}) {
+// function TodoForm({addTodo}) {
+function TodoForm() {
+    const { addTodo } = useContext(TodosContext)
     const [value, setValue] = useState('')
   
     // ボタン押下時の処理

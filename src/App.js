@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+//import React, {useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Container, Button, Table } from 'reactstrap';
+import { Container } from 'reactstrap';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
+import TodosContextProvider from './contexts/TodosContext';
 
 function App() {
   // const [value, setValue] = useState('')
-  const [todos, setTodos] = useState([])
+  // const [todos, setTodos] = useState([])
 
   // // ボタン押下時の処理
   // const handleSubmit = e => {
@@ -16,33 +17,38 @@ function App() {
   //   setValue('')
   //   console.log(value)
   // }
-  // リストの追加
-  const addTodo = text => {
-    const newTodos = [...todos, {text, complete:false}]
-    setTodos(newTodos)
-    console.log(newTodos)
-  }
-  // リストの削除
-  const removeTodo = index => {
-    const newTodos = [...todos]
-    newTodos.splice(index, 1)
-    setTodos(newTodos)
-    console.log(newTodos)
-  }
-  // 完了・未完了ボタン押下時の処理
-  const completeTodo = index => {
-    const newTodos = setTodos(value)
-    newTodos.splice[index].complete = !newTodos[index].complete
-    setTodos(newTodos)
-    console.log(newTodos)
-  }
+  // // リストの追加
+  // const addTodo = text => {
+  //   const newTodos = [...todos, {text, complete:false}]
+  //   setTodos(newTodos)
+  //   console.log(newTodos)
+  // }
+  // // リストの削除
+  // const removeTodo = index => {
+  //   const newTodos = [...todos]
+  //   newTodos.splice(index, 1)
+  //   setTodos(newTodos)
+  //   console.log(newTodos)
+  // }
+  // // 完了・未完了ボタン押下時の処理
+  // const completeTodo = index => {
+  //   const newTodos = setTodos(value)
+  //   newTodos.splice[index].complete = !newTodos[index].complete
+  //   setTodos(newTodos)
+  //   console.log(newTodos)
+  // }
 
   return (
     <div className="App">
       <Container>
         <h1 className="mt-4">Todo リスト</h1>
-        <TodoForm addTodo={addTodo}></TodoForm>
-        {/* <Form onSubmit={handleSubmit}>
+        <TodosContextProvider>
+          <TodoForm ></TodoForm>
+          <TodoList ></TodoList>
+        </TodosContextProvider>
+
+        {/* <TodoForm addTodo={addTodo}></TodoForm>
+        <Form onSubmit={handleSubmit}>
           <InputGroup>
             <Input text="text"
              value={value}
@@ -51,7 +57,7 @@ function App() {
               <Button type="submit" color="primary">追加</Button>
             </InputGroup.Addon>
           </InputGroup>
-        </Form> */}
+        </Form>
       </Container>
 
       <Container>
@@ -61,7 +67,7 @@ function App() {
           removeTodo={removeTodo}
         >
 
-        </TodoList>
+        </TodoList> */}
         {/* <Table>
           <tbody>
             {todos && todos.map((todo, index) => (
